@@ -1,26 +1,50 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import styled from "styled-components";
+import { PersistGate } from "redux-persist/integration/react";
+
+import store, { persistor } from "./store";
+import { Provider } from "react-redux";
+import Result from "./components/Result.container";
+import Button from "./components/Button.container";
+import Input from "./components/Input.container";
+
+const Wrapper = styled.div`
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+`;
+
+const LineWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  color: white;
+`;
+
+const Spacer = styled.div`
+  width: 48px;
+  height: 48px;
+`;
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <Wrapper>
+            <LineWrapper>
+              <Input />
+              <Spacer />
+              <Button />
+            </LineWrapper>
+            <Spacer />
+            <Result />
+          </Wrapper>
+        </PersistGate>
+      </Provider>
     );
   }
 }
