@@ -13,8 +13,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "build": "PUBLIC_URL=DARK_STATIC_ASSETS_BASE_URL react-scripts build",
+    "deploy": "yarn build && ./bin/dark build --canvas $DARK_USER-sassy-finder --password $DARK_PASSWORD --user $DARK_USER",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
